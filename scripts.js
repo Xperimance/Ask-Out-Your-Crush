@@ -1,6 +1,6 @@
 const container = document.querySelector('.container');
 const buttonElement = document.createElement('button');
-buttonElement.textContent = 'Ask Your Crush!';
+buttonElement.textContent = 'Ask Out Your Crush!';
 buttonElement.addEventListener('click', function() {
     const userName = prompt("What's your name?")
     const crushName = prompt("What's your crush's name?");
