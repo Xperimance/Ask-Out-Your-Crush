@@ -1,25 +1,27 @@
-const taskInput = document.getElementById("taskInput");
-const taskList = document.getElementById("taskList");
+const container = document.querySelector('.container');
+const buttonElement = document.createElement('button');
+buttonElement.textContent = 'Ask Your Crush!';
+buttonElement.addEventListener('click', function() {
+    const crushName = prompt("What's your crush's name?");
 
-taskInput.addEventListener("keyup", function(event) {
-    if (event.key === "Enter" && taskInput.value.trim() !== "") {
-        addTask(taskInput.value);
-        taskInput.value = "";
+    if (crushName !== null) { // If user clicks 'cancel'
+        const confirmed = confirm(`Are you sure you want to ask ${crushName} to go out with you?`);
+
+        let response = '';
+        if (confirmed) {
+            response = prompt(`${crushName}, will you go out with me? (Yes/No)`);
+        }
+
+        const message = document.createElement('p');
+        if (response !== null) {
+            if (response.toLowerCase()==='yes') {
+                message.textContent = `Congratulations! ${crushName} said yes! 🎉`;
+            } else {
+                message.textContent = `${crushName} said no. Better luck next time! 💔`;
+            }
+        }
+        container.appendChild(message);
     }
 });
-
-function addTask(taskText) {
-    const taskItem = document.createElement("li");
-    taskItem.innerHTML = `
-        <input type="checkbox">
-        <span>${taskText}</span>
-        <button>Delete</button>
-    `;
     
-    const deleteButton = taskItem.querySelector("button");
-    deleteButton.addEventListener("click", function() {
-        taskItem.remove();
-    });
-    
-    taskList.appendChild(taskItem);
-}
+container.appendChild(buttonElement);
